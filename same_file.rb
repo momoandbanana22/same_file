@@ -24,4 +24,4 @@ target_files.each do |src|
   end
 end
 
-pp same_files
+pp same_files_pair
