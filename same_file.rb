@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
+require 'yaml'
 require 'find'
 require 'fileutils'
 
 same_files_pair = []
 added_files = []
 
-target_files = Find.find('D:\Download\video')
+target_directory = YAML.load_file('target_directory.yaml')
+target_files = Find.find(target_directory)
 
 target_files.each do |src|
   target_files.each do |cmp|
