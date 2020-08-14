@@ -4,12 +4,19 @@ require 'yaml'
 require 'find'
 require 'fileutils'
 
+# 検索結果保存用の配列変数
 same_files_pair = []
 added_files = []
 
+# 設定ファイル読み込み
 target_directory = YAML.load_file('target_directory.yaml')
 target_files = Find.find(target_directory)
 
+# 前回の検索結果を読み込み
+same_files_pair = YAML.load_file('same_files_pair.yaml')
+added_files = YAML.load_file('added_files.yaml')
+
+# 検索
 target_files.each do |src|
   target_files.each do |cmp|
     next unless File.file?(cmp) # ファイル以外は除外
@@ -34,4 +41,8 @@ target_files.each do |src|
   end
 end
 
-pp same_files_pair
+# 検索結果保存
+File.open('same_files_pair.yaml', 'w') { |f| YAML.dump(same_files_pair, f) }
+File.open('added_files.yaml', 'w') { |f| YAML.dump(added_files, f) }
+
+pp 'breakpoint'
