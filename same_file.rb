@@ -13,8 +13,8 @@ target_directory = YAML.load_file('target_directory.yaml')
 target_files = Find.find(target_directory)
 
 # 前回の検索結果を読み込み
-same_files_pair = YAML.load_file('same_files_pair.yaml')
-added_files = YAML.load_file('added_files.yaml')
+same_files_pair = YAML.load_file('same_files_pair.yaml') if File.exist?('same_files_pair.yaml')
+added_files = YAML.load_file('added_files.yaml') if File.exist?('added_files.yaml')
 
 # 検索
 target_files.each do |src|
