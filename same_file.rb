@@ -34,4 +34,33 @@ target_files.each do |src|
   end
 end
 
-pp same_files_pair
+# pp same_files_pair
+
+same_files_pair.each do | same_file |
+  if same_file[1] == ''
+    puts("This file is empty. :#{same_file[0]}")
+    puts('Do you want to DELETE this file ? [y/n]')
+    answer = gets
+    if answer == 'y'
+      File.DELETE(same_files[0])
+      puts('This file has been deleted.')
+    else
+      puts('skipped.')
+    end
+  else
+    puts('same 2 files are')
+    puts("1:#{same_file[0]}")
+    puts("2:#{same_file[1]}")
+    puts('Which do you want to delete ? [1/2]')
+    answer = gets
+    if answer == '1'
+      File.DELETE(same_files[0])
+      puts('file1 deleted.')
+    elsif answer == '2'
+      File.DELETE(same_files[1])
+      puts('file2 deleted.')
+    else
+      puts('skipped.')
+    end
+  end
+end
